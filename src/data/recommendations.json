@@ -1,0 +1,490 @@
+{
+  "aiTypes": {
+    "generative": {
+      "label": "生成型",
+      "emoji": "✍️",
+      "description": "擅长内容创作、文案撰写、方案生成、多媒体素材制作",
+      "detail": "适用于需要从无到有创造内容的场景。能帮你写方案、做课件、写通知、设计宣传物料。输入需求即可输出高质量内容。",
+      "tools": [
+        {
+          "name": "ChatGPT",
+          "desc": "通用对话式AI，适合写方案/文案/大纲",
+          "link": "https://chat.openai.com"
+        },
+        {
+          "name": "Gamma",
+          "desc": "一键生成演示文稿和文档",
+          "link": "https://gamma.app"
+        },
+        {
+          "name": "Kimi",
+          "desc": "支持长文本处理，适合写详细方案"
+        },
+        {
+          "name": "文心一言",
+          "desc": "百度出品，中文内容生成能力出色"
+        }
+      ]
+    },
+    "analytical": {
+      "label": "分析型",
+      "emoji": "📊",
+      "description": "擅长数据分析、信息提炼、模式识别、结构化梳理",
+      "detail": "适用于面对大量信息需要提炼结论的场景。能帮你做需求分析、数据汇总、报告生成、趋势判断。",
+      "tools": [
+        {
+          "name": "Claude",
+          "desc": "深度分析能力强，擅长结构化输出",
+          "link": "https://claude.ai"
+        },
+        {
+          "name": "DeepSeek",
+          "desc": "逻辑推理能力强，适合复杂分析任务"
+        },
+        {
+          "name": "Gemini",
+          "desc": "Google出品，多模态分析能力"
+        },
+        {
+          "name": "通义千问",
+          "desc": "阿里出品，数据分析与摘要能力强"
+        }
+      ]
+    },
+    "process": {
+      "label": "流程型",
+      "emoji": "🔁",
+      "description": "擅长流程自动化、工作流编排、多步骤任务串联",
+      "detail": "适用于有固定流程、重复执行、跨系统协作的场景。能帮你搭建自动化工作流，减少人工干预。",
+      "tools": [
+        {
+          "name": "Coze",
+          "desc": "字节跳动出品，零门槛搭建AI工作流",
+          "link": "https://coze.com"
+        },
+        {
+          "name": "Dify",
+          "desc": "开源AI应用开发平台，支持复杂流程编排",
+          "link": "https://dify.ai"
+        },
+        {
+          "name": "Zapier",
+          "desc": "连接不同应用实现自动化"
+        },
+        {
+          "name": "Make",
+          "desc": "可视化自动化工作流平台"
+        }
+      ]
+    },
+    "organizational": {
+      "label": "整理型",
+      "emoji": "🗂️",
+      "description": "擅长信息整理、分类归档、知识结构化、多维表格",
+      "detail": "适用于需要把散乱信息系统化管理的场景。能帮你建立知识库、整理数据表格、维护信息资产。",
+      "tools": [
+        {
+          "name": "飞书多维表格",
+          "desc": "适合团队协作的信息整理平台"
+        },
+        {
+          "name": "Airtable",
+          "desc": "灵活的数据管理平台"
+        },
+        {
+          "name": "Notion",
+          "desc": "All-in-one 知识管理与协作空间",
+          "link": "https://notion.so"
+        },
+        {
+          "name": "语雀",
+          "desc": "阿里巴巴出品，知识库管理工具"
+        }
+      ]
+    },
+    "knowledge": {
+      "label": "知识型",
+      "emoji": "🧠",
+      "description": "擅长知识检索、智能问答、经验沉淀、专家系统",
+      "detail": "适用于需要构建可问答的知识库、沉淀组织经验的场景。能帮你搭建企业内部知识问答系统。",
+      "tools": [
+        {
+          "name": "Hermes",
+          "desc": "企业级知识管理AI助手"
+        },
+        {
+          "name": "Workbuddy",
+          "desc": "面向企业的智能知识服务平台"
+        },
+        {
+          "name": "腾讯乐享AI",
+          "desc": "腾讯乐享内置AI知识问答能力"
+        }
+      ]
+    },
+    "development": {
+      "label": "开发型",
+      "emoji": "💻",
+      "description": "擅长代码生成、应用开发、系统集成、自动化脚本",
+      "detail": "适用于需要定制化工具、小程序、数据分析看板的场景。能帮你快速搭建内部工具。",
+      "tools": [
+        {
+          "name": "CodeX",
+          "desc": "对话式编程助手，适合快速原型"
+        },
+        {
+          "name": "Trae",
+          "desc": "字节跳动出品，AI原生IDE"
+        },
+        {
+          "name": "Cursor",
+          "desc": "AI驱动的代码编辑器",
+          "link": "https://cursor.sh"
+        }
+      ]
+    }
+  },
+  "rules": [
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "need_research"
+        ],
+        "painpoints_any": [
+          "info_scattered",
+          "hard_summarize"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "organizational",
+        "score": 95
+      }
+    },
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "need_research"
+        ],
+        "painpoints_any": [
+          "interview_tedious"
+        ]
+      },
+      "then": {
+        "primary": "generative",
+        "secondary": "organizational",
+        "score": 90
+      }
+    },
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "plan_scheme"
+        ],
+        "painpoints_any": [
+          "restructure",
+          "no_template"
+        ]
+      },
+      "then": {
+        "primary": "generative",
+        "secondary": "analytical",
+        "score": 95
+      }
+    },
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "plan_scheme"
+        ],
+        "painpoints_any": [
+          "hard_align"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "generative",
+        "score": 90
+      }
+    },
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "design_path"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "knowledge",
+        "score": 85
+      }
+    },
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "resource_coord"
+        ]
+      },
+      "then": {
+        "primary": "process",
+        "secondary": "organizational",
+        "score": 85
+      }
+    },
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "track_exec"
+        ]
+      },
+      "then": {
+        "primary": "process",
+        "secondary": "analytical",
+        "score": 85
+      }
+    },
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "review_opt"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "knowledge",
+        "score": 90
+      }
+    },
+    {
+      "if": {
+        "role": "resource",
+        "behaviors": [
+          "course_build"
+        ]
+      },
+      "then": {
+        "primary": "generative",
+        "secondary": "organizational",
+        "score": 90
+      }
+    },
+    {
+      "if": {
+        "role": "resource",
+        "behaviors": [
+          "trainer_train"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "knowledge",
+        "score": 85
+      }
+    },
+    {
+      "if": {
+        "role": "resource",
+        "behaviors": [
+          "trainer_mgmt"
+        ]
+      },
+      "then": {
+        "primary": "organizational",
+        "secondary": "process",
+        "score": 85
+      }
+    },
+    {
+      "if": {
+        "role": "resource",
+        "behaviors": [
+          "eval_vendor"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "organizational",
+        "score": 90
+      }
+    },
+    {
+      "if": {
+        "role": "resource",
+        "behaviors": [
+          "build_kb"
+        ]
+      },
+      "then": {
+        "primary": "organizational",
+        "secondary": "knowledge",
+        "score": 95
+      }
+    },
+    {
+      "if": {
+        "role": "operation",
+        "behaviors": [
+          "send_notice"
+        ]
+      },
+      "then": {
+        "primary": "process",
+        "secondary": "generative",
+        "score": 90
+      }
+    },
+    {
+      "if": {
+        "role": "operation",
+        "behaviors": [
+          "manage_reg"
+        ]
+      },
+      "then": {
+        "primary": "process",
+        "secondary": "organizational",
+        "score": 90
+      }
+    },
+    {
+      "if": {
+        "role": "operation",
+        "behaviors": [
+          "track_hw"
+        ]
+      },
+      "then": {
+        "primary": "process",
+        "secondary": "analytical",
+        "score": 85
+      }
+    },
+    {
+      "if": {
+        "role": "operation",
+        "behaviors": [
+          "summarize_data"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "development",
+        "score": 90
+      }
+    },
+    {
+      "if": {
+        "role": "operation",
+        "behaviors": [
+          "budget_track"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "process",
+        "score": 85
+      }
+    },
+    {
+      "if": {
+        "role": "project",
+        "behaviors": [
+          "need_research"
+        ]
+      },
+      "then": {
+        "primary": "analytical",
+        "secondary": "generative",
+        "score": 80
+      }
+    },
+    {
+      "if": {
+        "role": "project"
+      },
+      "then": {
+        "primary": "generative",
+        "secondary": "analytical",
+        "score": 70
+      }
+    },
+    {
+      "if": {
+        "role": "resource"
+      },
+      "then": {
+        "primary": "organizational",
+        "secondary": "generative",
+        "score": 70
+      }
+    },
+    {
+      "if": {
+        "role": "operation"
+      },
+      "then": {
+        "primary": "process",
+        "secondary": "organizational",
+        "score": 70
+      }
+    }
+  ],
+  "structureModifiers": {
+    "repeatability": {
+      "high": {
+        "add": [
+          "process"
+        ],
+        "boost": 10
+      },
+      "medium": {
+        "boost": 5
+      }
+    },
+    "complexity": {
+      "high": {
+        "add": [
+          "analytical"
+        ],
+        "boost": 10
+      },
+      "medium": {
+        "boost": 5
+      }
+    },
+    "standardization": {
+      "high": {
+        "add": [
+          "process"
+        ],
+        "boost": 10
+      },
+      "low": {
+        "add": [
+          "analytical",
+          "generative"
+        ],
+        "boost": 5
+      }
+    },
+    "collaboration": {
+      "cross": {
+        "add": [
+          "process"
+        ],
+        "boost": 10
+      },
+      "dept": {
+        "boost": 5
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+  }
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-xl
+           shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 active:scale-[0.98]
+           transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+  .btn-outline {
+    @apply w-full py-3 px-6 border-2 border-gray-200 text-gray-700 font-medium rounded-xl
+           hover:border-blue-300 hover:text-blue-600 active:scale-[0.98]
+           transition-all duration-200;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 p-5;
+  }
+  .chip {
+    @apply inline-flex items-center px-4 py-2.5 rounded-xl border-2 text-sm font-medium
+           transition-all duration-200 select-none active:scale-95;
+  }
+  .chip-active {
+    @apply border-blue-500 bg-blue-50 text-blue-700 shadow-sm;
+  }
+  .chip-inactive {
+    @apply border-gray-200 bg-white text-gray-600 hover:border-gray-300;
+  }
+  .page-title {
+    @apply text-xl font-bold text-gray-900 mb-1;
+  }
+  .page-subtitle {
+    @apply text-sm text-gray-500 mb-6;
+  }
+  .progress-step {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium transition-all duration-300;
+  }
+}
+
+@page {
+  size: auto;
+  margin: 12mm;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  body { background: white !important; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.35s ease-out;
+}

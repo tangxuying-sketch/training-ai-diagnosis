@@ -1,0 +1,485 @@
+{
+  "step1": {
+    "id": "role",
+    "title": "你当前最希望优化的是哪一层工作？",
+    "type": "single",
+    "options": [
+      {
+        "id": "project",
+        "label": "项目落地层",
+        "subtitle": "业务促进项目 / 人才发展项目 / 文化传承项目 / 知识服务项目",
+        "icon": "📋"
+      },
+      {
+        "id": "resource",
+        "label": "资源建设层",
+        "subtitle": "课程 / 讲师 / 平台 / 供应商",
+        "icon": "📚"
+      },
+      {
+        "id": "operation",
+        "label": "行政运营层",
+        "subtitle": "通知 / 班级 / 预算 / 进度 / 数据",
+        "icon": "⚙️"
+      }
+    ]
+  },
+  "step2": {
+    "id": "behaviors",
+    "type": "multi",
+    "hasOther": true,
+    "otherPlaceholder": "其他工作行为，请说明",
+    "mapping": {
+      "project": {
+        "title": "你主要涉及哪些具体工作行为？",
+        "options": [
+          {
+            "id": "need_research",
+            "label": "培训需求调研"
+          },
+          {
+            "id": "plan_scheme",
+            "label": "规划项目方案"
+          },
+          {
+            "id": "design_path",
+            "label": "设计学习路径"
+          },
+          {
+            "id": "resource_coord",
+            "label": "安排资源协同"
+          },
+          {
+            "id": "track_exec",
+            "label": "跟进项目执行"
+          },
+          {
+            "id": "review_opt",
+            "label": "项目复盘优化"
+          }
+        ]
+      },
+      "resource": {
+        "title": "你主要涉及哪些具体工作行为？",
+        "options": [
+          {
+            "id": "course_build",
+            "label": "课程资源建设"
+          },
+          {
+            "id": "trainer_train",
+            "label": "内训师培养"
+          },
+          {
+            "id": "trainer_mgmt",
+            "label": "内训师管理"
+          },
+          {
+            "id": "eval_vendor",
+            "label": "评估供应商"
+          },
+          {
+            "id": "build_kb",
+            "label": "建知识库"
+          }
+        ]
+      },
+      "operation": {
+        "title": "你主要涉及哪些具体工作行为？",
+        "options": [
+          {
+            "id": "send_notice",
+            "label": "发通知"
+          },
+          {
+            "id": "manage_reg",
+            "label": "管报名"
+          },
+          {
+            "id": "track_hw",
+            "label": "跟作业"
+          },
+          {
+            "id": "summarize_data",
+            "label": "汇总数据"
+          },
+          {
+            "id": "budget_track",
+            "label": "做预算追踪"
+          }
+        ]
+      }
+    }
+  },
+  "step3": {
+    "id": "painpoints",
+    "type": "multi",
+    "hasOther": true,
+    "otherPlaceholder": "其他工作难点，请说明",
+    "mapping": {
+      "need_research": {
+        "title": "在需求调研中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "info_scattered",
+            "label": "信息太散"
+          },
+          {
+            "id": "hard_summarize",
+            "label": "难提炼重点"
+          },
+          {
+            "id": "interview_tedious",
+            "label": "访谈整理耗时"
+          }
+        ]
+      },
+      "plan_scheme": {
+        "title": "在规划项目方案中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "restructure",
+            "label": "结构反复改"
+          },
+          {
+            "id": "hard_align",
+            "label": "难对齐业务目标"
+          },
+          {
+            "id": "no_template",
+            "label": "缺模板"
+          }
+        ]
+      },
+      "design_path": {
+        "title": "在设计学习路径中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "unclear_path",
+            "label": "路径不清楚"
+          },
+          {
+            "id": "hard_match",
+            "label": "难匹配岗位需求"
+          },
+          {
+            "id": "content_scattered",
+            "label": "内容零散不成体系"
+          }
+        ]
+      },
+      "resource_coord": {
+        "title": "在安排资源协同中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "hard_schedule",
+            "label": "多方协调难"
+          },
+          {
+            "id": "slow_response",
+            "label": "响应慢"
+          },
+          {
+            "id": "no_visibility",
+            "label": "资源状态不透明"
+          }
+        ]
+      },
+      "track_exec": {
+        "title": "在跟进项目执行中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "no_progress",
+            "label": "进度不透明"
+          },
+          {
+            "id": "hard_follow",
+            "label": "追踪费人力"
+          },
+          {
+            "id": "poor_comm",
+            "label": "信息传递滞后"
+          }
+        ]
+      },
+      "review_opt": {
+        "title": "在项目复盘优化中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "no_data",
+            "label": "缺数据支撑"
+          },
+          {
+            "id": "superficial",
+            "label": "复盘流于表面"
+          },
+          {
+            "id": "hard_iterate",
+            "label": "经验难沉淀"
+          }
+        ]
+      },
+      "course_build": {
+        "title": "在课程资源建设中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "dev_slow",
+            "label": "开发周期长"
+          },
+          {
+            "id": "quality_uneven",
+            "label": "质量参差不齐"
+          },
+          {
+            "id": "hard_update",
+            "label": "更新迭代难"
+          }
+        ]
+      },
+      "trainer_train": {
+        "title": "在内训师培养中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "no_standard",
+            "label": "标准不统一"
+          },
+          {
+            "id": "hard_quantify",
+            "label": "难量化评估"
+          },
+          {
+            "id": "no_growth_record",
+            "label": "缺成长记录"
+          }
+        ]
+      },
+      "trainer_mgmt": {
+        "title": "在内训师管理中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "low_motivation",
+            "label": "积极性不高"
+          },
+          {
+            "id": "hard_match_topic",
+            "label": "派课匹配难"
+          },
+          {
+            "id": "no_feedback",
+            "label": "学员反馈收集难"
+          }
+        ]
+      },
+      "eval_vendor": {
+        "title": "在评估供应商中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "too_much_info",
+            "label": "信息太多"
+          },
+          {
+            "id": "hard_compare",
+            "label": "横向比较难"
+          },
+          {
+            "id": "no_decision_basis",
+            "label": "缺决策依据"
+          }
+        ]
+      },
+      "build_kb": {
+        "title": "在建知识库中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "content_messy",
+            "label": "内容杂乱"
+          },
+          {
+            "id": "hard_search",
+            "label": "查找不便"
+          },
+          {
+            "id": "low_usage",
+            "label": "使用率低"
+          }
+        ]
+      },
+      "send_notice": {
+        "title": "在发通知中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "many_channels",
+            "label": "渠道多易遗漏"
+          },
+          {
+            "id": "hard_track_read",
+            "label": "难追踪已读未读"
+          },
+          {
+            "id": "repeat_work",
+            "label": "重复工作多"
+          }
+        ]
+      },
+      "manage_reg": {
+        "title": "在管报名中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "info_disorder",
+            "label": "信息杂乱"
+          },
+          {
+            "id": "hard_stat",
+            "label": "统计费时"
+          },
+          {
+            "id": "frequent_changes",
+            "label": "变动频繁"
+          }
+        ]
+      },
+      "track_hw": {
+        "title": "在跟作业中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "collection_hard",
+            "label": "收集困难"
+          },
+          {
+            "id": "hard_review",
+            "label": "批阅费时"
+          },
+          {
+            "id": "no_reminder",
+            "label": "缺自动提醒"
+          }
+        ]
+      },
+      "summarize_data": {
+        "title": "在汇总数据中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "sources_many",
+            "label": "数据来源多"
+          },
+          {
+            "id": "manual_tedious",
+            "label": "手工汇总繁琐"
+          },
+          {
+            "id": "hard_visualize",
+            "label": "难形成可视化"
+          }
+        ]
+      },
+      "budget_track": {
+        "title": "在做预算追踪中，你遇到的主要困难是？",
+        "options": [
+          {
+            "id": "real_time_hard",
+            "label": "实时更新难"
+          },
+          {
+            "id": "overrun_risk",
+            "label": "超支风险难预警"
+          },
+          {
+            "id": "hard_report",
+            "label": "报表生成费时"
+          }
+        ]
+      }
+    }
+  },
+  "step4": {
+    "id": "structure",
+    "title": "请判断你面对的工作结构特征",
+    "type": "dimensions",
+    "dimensions": [
+      {
+        "key": "repeatability",
+        "label": "重复性",
+        "options": [
+          {
+            "value": "low",
+            "label": "低",
+            "desc": "每次都不一样"
+          },
+          {
+            "value": "medium",
+            "label": "中",
+            "desc": "部分重复"
+          },
+          {
+            "value": "high",
+            "label": "高",
+            "desc": "大量重复"
+          }
+        ]
+      },
+      {
+        "key": "complexity",
+        "label": "复杂度",
+        "options": [
+          {
+            "value": "low",
+            "label": "低",
+            "desc": "简单清晰"
+          },
+          {
+            "value": "medium",
+            "label": "中",
+            "desc": "有一定复杂度"
+          },
+          {
+            "value": "high",
+            "label": "高",
+            "desc": "高度复杂"
+          }
+        ]
+      },
+      {
+        "key": "standardization",
+        "label": "标准化",
+        "options": [
+          {
+            "value": "low",
+            "label": "低",
+            "desc": "无固定流程"
+          },
+          {
+            "value": "medium",
+            "label": "中",
+            "desc": "部分可标准化"
+          },
+          {
+            "value": "high",
+            "label": "高",
+            "desc": "流程明确"
+          }
+        ]
+      },
+      {
+        "key": "collaboration",
+        "label": "协同性",
+        "options": [
+          {
+            "value": "individual",
+            "label": "个人",
+            "desc": "个人独立完成"
+          },
+          {
+            "value": "dept",
+            "label": "部门",
+            "desc": "部门内协同"
+          },
+          {
+            "value": "cross",
+            "label": "跨部门",
+            "desc": "跨部门协作"
+          }
+        ]
+      }
+    ]
+  }
+}
