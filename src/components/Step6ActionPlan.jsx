@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { generateActionAdvice } from '../utils/deepseek';
 
 export default function Step6ActionPlan({ deepseekPrompt, onLoadingChange }) {
@@ -18,7 +18,7 @@ export default function Step6ActionPlan({ deepseekPrompt, onLoadingChange }) {
         }
       } catch (e) {
         if (mounted) {
-          setAdvice('建议你先从最耗时、最重复的工作点入手，选择推荐的工具开始小范围试点。');
+          setAdvice('建议你先从最耗时、最重复的工作点入手，选择推荐的工具开始小范围试错。');
         }
       } finally {
         if (mounted) {
@@ -32,21 +32,34 @@ export default function Step6ActionPlan({ deepseekPrompt, onLoadingChange }) {
     return () => { mounted = false; };
   }, [deepseekPrompt]);
 
-  // 简单Markdown渲染
+  // 简易Markdown渲染（支持 **bold**、##标题、-列表等）
+  const renderLine = (line, i) => {
+    // 处理 **加粗** — 将 **text** 替换为 <strong>text</strong>
+    const renderBold = (text) => {
+      const parts = text.split(/(\*\*[^*]+\*\*)/);
+      return parts.map((part, j) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return React.createElement('strong', { key: j }, part.slice(2, -2));
+        }
+        return part;
+      });
+    };
+
+    if (line.startsWith('## ')) {
+      return <h3 key={i} className="text-base font-bold text-gray-800 mt-4 mb-2">{line.replace('## ', '')}</h3>;
+    }
+    if (line.startsWith('- ')) {
+      return <li key={i} className="text-sm text-gray-600 ml-4 list-disc">{renderBold(line.replace('- ', ''))}</li>;
+    }
+    if (/^\d+\.\s*/.test(line)) {
+      return <li key={i} className="text-sm text-gray-600 ml-4 list-decimal">{renderBold(line.replace(/^\d+\.\s*/, ''))}</li>;
+    }
+    return <p key={i} className="text-sm text-gray-600 leading-relaxed">{renderBold(line)}</p>;
+  };
+
   const renderContent = (text) => {
     const lines = text.split('\n').filter(Boolean);
-    return lines.map((line, i) => {
-      if (line.startsWith('## ')) {
-        return <h3 key={i} className="text-base font-bold text-gray-800 mt-4 mb-2">{line.replace('## ', '')}</h3>;
-      }
-      if (line.startsWith('- ')) {
-        return <li key={i} className="text-sm text-gray-600 ml-4 list-disc">{line.replace('- ', '')}</li>;
-      }
-      if (line.startsWith('1.') || line.startsWith('2.') || line.startsWith('3.') || line.startsWith('4.')) {
-        return <li key={i} className="text-sm text-gray-600 ml-4 list-decimal">{line.replace(/^\d+\.\s*/, '')}</li>;
-      }
-      return <p key={i} className="text-sm text-gray-600 leading-relaxed">{line}</p>;
-    });
+    return lines.map((line, i) => renderLine(line, i));
   };
 
   if (loading) {
@@ -75,8 +88,7 @@ export default function Step6ActionPlan({ deepseekPrompt, onLoadingChange }) {
         <div className="flex items-start gap-2">
           <span className="text-lg flex-shrink-0">💡</span>
           <div className="text-sm text-amber-800 leading-relaxed">
-            <strong>小贴士：</strong>建议从一个小而具体的场景开始，跑通后再复制到其他环节。
-            先"跑通"再"优化"，不要追求一步到位。
+            <strong>小贴士：</strong>建议从一个小而具体的场景开始，跑通后再复制到其他环节。记住"先跑通、再优化"，不要追求一步到位。
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
-import React from 'react';
+﻿import React from 'react';
 
 function renderText(text) {
-  // Convert **bold** to <strong>bold</strong>
   const parts = text.split(/(\*\*[^*]+\*\*)/);
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
@@ -13,12 +12,12 @@ function renderText(text) {
 
 export default function Step5AIRecommendation({ result }) {
   if (!result) return null;
-  const { primary, secondary, reasons, structureInfo } = result;
+  const { primary, secondary, reasons, structureInfo, paths } = result;
 
   return (
     <div className="animate-fadeIn space-y-5">
       <div>
-        <h2 className="page-title">你的AI能力匹配报告</h2>
+        <h2 className="page-title">你的AI应用机会</h2>
         <p className="page-subtitle">基于你的工作特征，我们为你推荐以下AI能力组合</p>
       </div>
 
@@ -27,10 +26,10 @@ export default function Step5AIRecommendation({ result }) {
           <span className="text-2xl">{primary.emoji}</span>
           <div>
             <div className="text-xs text-gray-400 font-medium">核心推荐</div>
-            <div className="text-lg font-bold text-gray-900">{primary.label}型</div>
+            <div className="text-lg font-bold text-gray-900">{primary.label}</div>
           </div>
         </div>
-        <p className="text-sm text-gray-600 leading-relaxed">{primary.detail}</p>
+        <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{primary.detail}</p>
         <div className="mt-4 pt-4 border-t border-gray-100">
           <div className="text-xs text-gray-400 font-medium mb-2">推荐工具</div>
           <div className="space-y-2">
@@ -53,16 +52,65 @@ export default function Step5AIRecommendation({ result }) {
             <span className="text-2xl">{secondary.emoji}</span>
             <div>
               <div className="text-xs text-gray-400 font-medium">辅助能力</div>
-              <div className="text-lg font-bold text-gray-900">{secondary.label}型</div>
+              <div className="text-lg font-bold text-gray-900">{secondary.label}</div>
             </div>
           </div>
-          <p className="text-sm text-gray-600 leading-relaxed">{secondary.detail}</p>
+          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{secondary.detail}</p>
           <div className="mt-4 pt-4 border-t border-gray-100">
             <div className="text-xs text-gray-400 font-medium mb-2">推荐工具</div>
             <div className="space-y-2">
               {secondary.tools.map((tool, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0 mt-1.5" />
+                  <div>
+                    <span className="font-medium text-gray-700">{tool.name}</span>
+                    <span className="text-gray-400"> — {tool.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 两条行动路径 */}
+      {paths && (
+        <div className="space-y-4">
+          <div className="card border-l-4 border-l-emerald-500 bg-gradient-to-br from-emerald-50 to-teal-50">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-xl">🚀</span>
+              <div>
+                <div className="text-xs text-gray-400 font-medium">快速上手</div>
+                <div className="text-base font-bold text-gray-900">拿来即用 — 直接用AI工具提效</div>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 leading-relaxed mb-3">{paths.quick.description}</p>
+            <div className="space-y-1.5">
+              {paths.quick.tools.map((tool, i) => (
+                <div key={i} className="flex items-start gap-2 text-sm">
+                  <span className="text-emerald-500 flex-shrink-0 mt-0.5">▸</span>
+                  <div>
+                    <span className="font-medium text-gray-700">{tool.name}</span>
+                    <span className="text-gray-400"> — {tool.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card border-l-4 border-l-indigo-500 bg-gradient-to-br from-indigo-50 to-blue-50">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-xl">🔧</span>
+              <div>
+                <div className="text-xs text-gray-400 font-medium">深度定制</div>
+                <div className="text-base font-bold text-gray-900">AI Coding — 开发专属工具</div>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 leading-relaxed mb-3">{paths.advanced.description}</p>
+            <div className="space-y-1.5">
+              {paths.advanced.tools.map((tool, i) => (
+                <div key={i} className="flex items-start gap-2 text-sm">
+                  <span className="text-indigo-500 flex-shrink-0 mt-0.5">▸</span>
                   <div>
                     <span className="font-medium text-gray-700">{tool.name}</span>
                     <span className="text-gray-400"> — {tool.desc}</span>

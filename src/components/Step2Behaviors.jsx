@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+﻿import React from 'react';
 import questions from '../data/questions.json';
 
-export default function Step2Behaviors({ role, value = [], onChange }) {
-  const [otherText, setOtherText] = useState('');
+export default function Step2Behaviors({ role, value = [], customValue = '', onChange, onCustomChange }) {
   const step = questions.step2;
   const roleData = step.mapping[role];
 
@@ -16,8 +15,7 @@ export default function Step2Behaviors({ role, value = [], onChange }) {
   };
 
   const handleOtherChange = (e) => {
-    setOtherText(e.target.value);
-    onChange(value); // keep existing selections
+    onCustomChange(e.target.value);
   };
 
   return (
@@ -47,7 +45,7 @@ export default function Step2Behaviors({ role, value = [], onChange }) {
           <input
             type="text"
             placeholder={step.otherPlaceholder}
-            value={otherText}
+            value={customValue}
             onChange={handleOtherChange}
             className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm
                        focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-50

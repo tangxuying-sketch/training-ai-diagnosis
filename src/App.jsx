@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+﻿import React, { useState, useCallback } from 'react';
 import ProgressBar from './components/ProgressBar';
 import Step1RoleSelect from './components/Step1RoleSelect';
 import Step2Behaviors from './components/Step2Behaviors';
@@ -7,19 +7,20 @@ import Step4WorkStructure from './components/Step4WorkStructure';
 import Step5AIRecommendation from './components/Step5AIRecommendation';
 import Step6ActionPlan from './components/Step6ActionPlan';
 import LeadForm from './components/LeadForm';
+import PrintSummary from './components/PrintSummary';
 import { matchAIRecommendations } from './engine/matchEngine';
 
 export default function App() {
   const [step, setStep] = useState(1);
   const [showLeadForm, setShowLeadForm] = useState(true);
   const [leadInfo, setLeadInfo] = useState(null);
-  const [answers, setAnswers] = useState({ role: null, behaviors: [], painpoints: {}, structure: {} });
+  const [answers, setAnswers] = useState({ role: null, behaviors: [], customBehaviors: '', painpoints: {}, structure: {} });
   const [matchResult, setMatchResult] = useState(null);
 
   const updateAnswer = useCallback((key, value) => {
     setAnswers(prev => {
       const next = { ...prev, [key]: value };
-      if (key === 'role') { next.behaviors = []; next.painpoints = {}; next.structure = {}; }
+      if (key === 'role') { next.behaviors = []; next.customBehaviors = ''; next.painpoints = {}; next.structure = {}; }
       if (key === 'behaviors') {
         const kept = {};
         value.forEach(b => { if (prev.painpoints[b]) kept[b] = prev.painpoints[b]; });
@@ -32,7 +33,7 @@ export default function App() {
   const canProceed = () => {
     switch (step) {
       case 1: return !!answers.role;
-      case 2: return answers.behaviors.length > 0;
+      case 2: return answers.behaviors.length > 0 || answers.customBehaviors.trim().length > 0;
       case 3: return Object.values(answers.painpoints).some(a => a.length > 0);
       case 4: return ['repeatability','complexity','standardization','collaboration'].every(d => answers.structure[d]);
       default: return true;
@@ -53,15 +54,21 @@ export default function App() {
   const handleLeadSubmit = (info) => { setLeadInfo(info); setShowLeadForm(false); };
   const handleLeadSkip = () => { setShowLeadForm(false); };
   const handleRestart = () => {
-    setAnswers({ role: null, behaviors: [], painpoints: {}, structure: {} });
+    setAnswers({ role: null, behaviors: [], customBehaviors: '', painpoints: {}, structure: {} });
     setMatchResult(null); setLeadInfo(null); setShowLeadForm(true); setStep(1);
   };
 
   const renderStepContent = () => {
     const components = {
       1: <Step1RoleSelect value={answers.role} onChange={(v) => updateAnswer('role', v)} />,
-      2: <Step2Behaviors role={answers.role} value={answers.behaviors} onChange={(v) => updateAnswer('behaviors', v)} />,
-      3: <Step3PainPoints behaviors={answers.behaviors} values={answers.painpoints} onChange={(v) => updateAnswer('painpoints', v)} />,
+      2: <Step2Behaviors
+           role={answers.role}
+           value={answers.behaviors}
+           customValue={answers.customBehaviors}
+           onChange={(v) => updateAnswer('behaviors', v)}
+           onCustomChange={(v) => updateAnswer('customBehaviors', v)}
+         />,
+      3: <Step3PainPoints behaviors={answers.behaviors} customBehaviors={answers.customBehaviors} values={answers.painpoints} onChange={(v) => updateAnswer('painpoints', v)} />,
       4: <Step4WorkStructure values={answers.structure} onChange={(v) => updateAnswer('structure', v)} />
     };
     return components[step];
@@ -81,9 +88,14 @@ export default function App() {
         <div className="max-w-md mx-auto px-4 py-4">
           <ProgressBar currentStep={5} />
           <div className="mt-4 mb-20">
-            <Step5AIRecommendation result={matchResult} />
+            {/* 打印用：用户选择摘要 */}
+          <div className="print-only">
+            <PrintSummary answers={answers} leadInfo={leadInfo} matchResult={matchResult} />
           </div>
-          <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-gray-100 p-4 no-print">
+
+          <Step5AIRecommendation result={matchResult} />
+          </div>
+          <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-b border-gray-100 p-4 no-print">
             <div className="max-w-md mx-auto">
               <button onClick={() => { setStep(6); setShowLeadForm(true); }} className="btn-primary">
                 获取个性化行动建议 →
@@ -143,6 +155,11 @@ export default function App() {
               导出PDF
             </button>
             <button onClick={handleRestart} className="py-2.5 px-4 border-2 border-gray-200 text-gray-600 text-sm font-medium rounded-xl hover:border-gray-300 active:scale-[0.98] transition-all">重新测试</button>
+          </div>
+
+          {/* 打印用：用户选择摘要 */}
+          <div className="print-only">
+            <PrintSummary answers={answers} leadInfo={leadInfo} matchResult={matchResult} />
           </div>
 
           <Step5AIRecommendation result={matchResult} />
